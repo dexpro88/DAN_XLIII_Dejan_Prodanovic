@@ -8,6 +8,45 @@ namespace DAN_XLIII_Dejan_Prodanovic.Service
 {
     class EmployeeService : IEmployeeService
     {
+        public tblEmployee AddEmployee(tblEmployee employee)
+        {
+            try
+            {
+                using (WorkingHoursDBEntities context = new WorkingHoursDBEntities())
+                {
+
+                    tblEmployee newEmployee = new tblEmployee();
+                    newEmployee.FirstName = employee.LastName;
+                    newEmployee.LastName = employee.LastName;
+                    newEmployee.JMBG = employee.JMBG;
+                    newEmployee.Email = employee.Email;
+                    newEmployee.DateOfBirth = employee.DateOfBirth;
+                    newEmployee.IsMenager = false;
+                    newEmployee.Position = employee.Position;
+                    newEmployee.Salary = employee.Salary;
+                    newEmployee.AccountNumber = employee.AccountNumber;
+                    newEmployee.Username = employee.Username;
+                    newEmployee.Passwd = employee.Passwd;
+                  
+
+                    context.tblEmployees.Add(newEmployee);
+                    context.SaveChanges();
+
+                    employee.EmployeeID = newEmployee.EmployeeID;
+
+
+
+                    return employee;
+
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Exception" + ex.Message.ToString());
+                return null;
+            }
+        }
+
         public List<tblEmployee> GetAllEmployees()
         {
             try

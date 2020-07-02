@@ -89,9 +89,13 @@
     </Compile>
     <Compile Include="Utility\EncryptionHelper.cs" />
     <Compile Include="Validations\ValidationClass.cs" />
+    <Compile Include="ViewModel\AddEmployeeViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="ViewModel\ShowEmployeesViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
+    <Compile Include="View\AddEmployee.xaml.cs">
+      <DependentUpon>AddEmployee.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ShowEmployees.xaml.cs">
       <DependentUpon>ShowEmployees.xaml</DependentUpon>
     </Compile>
@@ -125,6 +129,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\AddEmployee.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\ShowEmployees.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

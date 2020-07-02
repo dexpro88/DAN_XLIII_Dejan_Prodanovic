@@ -101,6 +101,7 @@ namespace DAN_XLIII_Dejan_Prodanovic.ViewModel
                 OnPropertyChanged("MenagerSector");
             }
         }
+
         private List<tblEmployee> employeeList;
         public List<tblEmployee> EmployeeList
         {
@@ -142,6 +143,21 @@ namespace DAN_XLIII_Dejan_Prodanovic.ViewModel
                 OnPropertyChanged("Sectors");
             }
         }
+
+        private string salary;
+        public string Salary
+        {
+            get
+            {
+                return salary;
+            }
+            set
+            {
+                salary = value;
+                OnPropertyChanged("Salary");
+            }
+        }
+
         private Visibility viewAdminPage = Visibility.Collapsed;
         public Visibility ViewAdminPage
         {
@@ -268,9 +284,13 @@ namespace DAN_XLIII_Dejan_Prodanovic.ViewModel
 
                     if (empl.Username.Equals(employee.Username) && empl.Passwd.Equals(password))
                     {
-                        ViewMenagerMainPage = Visibility.Visible;
-                        ViewLoginPage = Visibility.Hidden;
-                        return;
+                        if (empl.IsMenager==true)
+                        {
+                            ViewMenagerMainPage = Visibility.Visible;
+                            ViewLoginPage = Visibility.Hidden;
+                            return;
+                        }
+                       
                     }
                 }
                 //string encryptedString = EncryptionHelper.Encrypt(password);
@@ -414,12 +434,19 @@ namespace DAN_XLIII_Dejan_Prodanovic.ViewModel
                     return;
                 }
 
+                int salary;
+                if (!Int32.TryParse(Salary,out salary))
+                {
+                    MessageBox.Show("Plata mora biti broj");
+                    return;
+                }
+
                 MenagerToAdd.RoleID = MenagerRole.RoleID;
                 MenagerToAdd.SectorID = menagerSector.SectorID;
-
+                MenagerToAdd.Salary = salary;
                 MenagerToAdd.DateOfBirth = StartDate;
 
-                
+                EmployeeList = employeeService.GetAllEmployees();
 
                 //string textForFile = String.Format("Added user {0} {1} JMBG {2}", employee.FirstName,
                 //              employee.LastName, employee.JMBG);
@@ -434,6 +461,7 @@ namespace DAN_XLIII_Dejan_Prodanovic.ViewModel
                 MenagerToAdd = new tblEmployee();
                 MenagerRole = new tblRole();
                 MenagerSector = new tblSector();
+                Salary = "";
                 MessageBox.Show("Uspesno ste dodali menadzera");
 
             }
@@ -449,7 +477,7 @@ namespace DAN_XLIII_Dejan_Prodanovic.ViewModel
             if (String.IsNullOrEmpty(MenagerToAdd.FirstName) || String.IsNullOrEmpty(MenagerToAdd.FirstName) ||
                 String.IsNullOrEmpty(MenagerToAdd.JMBG) || String.IsNullOrEmpty(MenagerToAdd.Email) ||
                 String.IsNullOrEmpty(MenagerToAdd.Position) || String.IsNullOrEmpty(MenagerToAdd.Passwd) ||
-                String.IsNullOrEmpty(MenagerToAdd.Username)
+                String.IsNullOrEmpty(MenagerToAdd.Username) || String.IsNullOrEmpty(Salary)
                )
             {
                 return false;

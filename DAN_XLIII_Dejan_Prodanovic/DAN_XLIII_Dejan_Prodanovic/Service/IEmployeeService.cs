@@ -10,6 +10,7 @@ namespace DAN_XLIII_Dejan_Prodanovic.Service
     {
         List<tblEmployee> GetAllEmployees();
         List<tblEmployee> GetAllNonMenagerEmployees();
+        tblEmployee AddEmployee(tblEmployee employee);
 
 
     }

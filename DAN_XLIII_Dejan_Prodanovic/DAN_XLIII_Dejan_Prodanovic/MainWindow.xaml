@@ -127,7 +127,7 @@
                     Orientation = "Horizontal">
             <Label  Name="lblSalary" Content="              Plata:" Padding="0" HorizontalAlignment="Right"/>
             <TextBox Name="txtSalary" Height="20" Width="200" Margin="2"
-                 Text="{Binding MenagerToAdd.Salary, UpdateSourceTrigger=PropertyChanged}"/>
+                 Text="{Binding Salary, UpdateSourceTrigger=PropertyChanged}"/>
         </StackPanel>
 
         <StackPanel Visibility="{Binding ViewAddMenagerPage, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="15"
