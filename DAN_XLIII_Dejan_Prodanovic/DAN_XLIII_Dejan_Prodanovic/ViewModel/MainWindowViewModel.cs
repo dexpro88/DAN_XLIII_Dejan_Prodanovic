@@ -2,6 +2,7 @@
 using DAN_XLIII_Dejan_Prodanovic.Service;
 using DAN_XLIII_Dejan_Prodanovic.Utility;
 using DAN_XLIII_Dejan_Prodanovic.Validations;
+using DAN_XLIII_Dejan_Prodanovic.View;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -445,57 +446,52 @@ namespace DAN_XLIII_Dejan_Prodanovic.ViewModel
         private bool CanAddMenagerExecute()
         {
 
-            //if (String.IsNullOrEmpty(Employee.FirstName) || String.IsNullOrEmpty(Employee.FirstName) ||
-            //    String.IsNullOrEmpty(Employee.JMBG) || String.IsNullOrEmpty(Employee.RegistrationNumber) ||
-            //    String.IsNullOrEmpty(Employee.TelefonNumber) || String.IsNullOrEmpty(SelctedLocation.Location) ||
-            //    String.IsNullOrEmpty(Sector)
-            //   )
-            //{
-            //    return false;
-            //}
-            //else
-            //{
-            //    return true;
-            //}
-            return true;
+            if (String.IsNullOrEmpty(MenagerToAdd.FirstName) || String.IsNullOrEmpty(MenagerToAdd.FirstName) ||
+                String.IsNullOrEmpty(MenagerToAdd.JMBG) || String.IsNullOrEmpty(MenagerToAdd.Email) ||
+                String.IsNullOrEmpty(MenagerToAdd.Position) || String.IsNullOrEmpty(MenagerToAdd.Passwd) ||
+                String.IsNullOrEmpty(MenagerToAdd.Username)
+               )
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+
         }
 
-        //private ICommand register;
-        //public ICommand Register
-        //{
-        //    get
-        //    {
-        //        if (register == null)
-        //        {
-        //            register = new RelayCommand(param => RegisterExecute(), param => CanRegisterExecute());
-        //        }
-        //        return register;
-        //    }
-        //}
+        private ICommand showEmployees;
+        public ICommand ShowEmployees
+        {
+            get
+            {
+                if (showEmployees == null)
+                {
+                    showEmployees = new RelayCommand(param => ShowEmployeesExecute(), param => CanShowEmployeesExecute());
+                }
+                return showEmployees;
+            }
+        }
 
-        //private void RegisterExecute()
-        //{
-        //    try
-        //    {
-        //        Register register = new Register();
-        //        register.ShowDialog();
-        //        //if ((addStudent.DataContext as AddStudentViewModel).IsUpdateStudent == true)
-        //        //{
-        //        //    using (Service1Client wcf = new Service1Client())
-        //        //    {
-        //        //        StudentList = wcf.GetAllStudents().ToList();
-        //        //    }
-        //        //}
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show(ex.ToString());
-        //    }
-        //}
-        //private bool CanRegisterExecute()
-        //{
-        //    return true;
-        //}
+        private void ShowEmployeesExecute()
+        {
+            try
+            {
+                ShowEmployees showEmployees = new ShowEmployees();
+                showEmployees.ShowDialog();
+
+                 
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+        private bool CanShowEmployeesExecute()
+        {
+            return true;
+        }
         #endregion
     }
 }

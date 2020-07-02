@@ -25,5 +25,23 @@ namespace DAN_XLIII_Dejan_Prodanovic.Service
                 return null;
             }
         }
+
+        public List<tblEmployee> GetAllNonMenagerEmployees()
+        {
+            try
+            {
+                using (WorkingHoursDBEntities context = new WorkingHoursDBEntities())
+                {
+                    List<tblEmployee> list = new List<tblEmployee>();
+                    list = (from x in context.tblEmployees where x.IsMenager==false select x).ToList();
+                    return list;
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Exception" + ex.Message.ToString());
+                return null;
+            }
+        }
     }
 }

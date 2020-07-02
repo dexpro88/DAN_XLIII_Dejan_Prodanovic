@@ -191,20 +191,20 @@
         
         
         <!--menager main page-->
-        <StackPanel Visibility="{Binding ViewMenagerMainPage, UpdateSourceTrigger=PropertyChanged}" Grid.Column="3" Grid.Row="1"
+        <StackPanel Visibility="{Binding ViewMenagerMainPage, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="1"
                     Orientation = "Horizontal" HorizontalAlignment="Center">
 
             <TextBlock Grid.Column="3" Grid.Row="1" Name="textBlock" TextWrapping="Wrap" FontSize="20"> 
-              <Bold>Ulogovani ste kao ADMIN!</Bold>
+              <Bold>Ulogovani ste kao Menadzer!</Bold>
             </TextBlock>
 
         </StackPanel>
        
-        <StackPanel Visibility="{Binding ViewMenagerMainPage, UpdateSourceTrigger=PropertyChanged}" Grid.Column="3" Grid.Row="3"
+        <StackPanel Visibility="{Binding ViewMenagerMainPage, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="3"
                     Orientation = "Horizontal">
            
             <Button   Name="btnShowEmoloyees" Content="Prikazi zaposlene" Height="20" Width="100" HorizontalAlignment="Left"
-                Command="{Binding AddMenager, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+                Command="{Binding ShowEmployees, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
             <Button   Name="btnShowReports" Content="Prikazi izvestaje" Height="20" Width="100" HorizontalAlignment="Right"
                 Command="{Binding Logout, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
             <Button   Name="btnLogout2" Content="Odjavi se" Height="20" Width="100" HorizontalAlignment="Right"
