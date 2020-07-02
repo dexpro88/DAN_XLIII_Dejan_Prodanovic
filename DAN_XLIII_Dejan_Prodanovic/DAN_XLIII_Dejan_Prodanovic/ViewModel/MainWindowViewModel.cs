@@ -1,6 +1,7 @@
 ﻿using DAN_XLIII_Dejan_Prodanovic.Commands;
 using DAN_XLIII_Dejan_Prodanovic.Service;
 using DAN_XLIII_Dejan_Prodanovic.Utility;
+using DAN_XLIII_Dejan_Prodanovic.Validations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +17,9 @@ namespace DAN_XLIII_Dejan_Prodanovic.ViewModel
     {
         MainWindow main;
         IEmployeeService employeeService;
-
+        IRoleService roleService;
+        ISectorService sectorService;
+        IMenagerService menagerService;
         #region Constructor
 
         public MainWindowViewModel(MainWindow mainOpen)
@@ -24,10 +27,17 @@ namespace DAN_XLIII_Dejan_Prodanovic.ViewModel
             main = mainOpen;
             employeeList = new List<tblEmployee>();
             employee = new tblEmployee();
+            menagerToAdd = new tblEmployee();
 
             employeeService = new EmployeeService();
-            //userList = service.GetAllUsers();
+            roleService = new RoleService();
+            sectorService = new SectorService();
+            menagerService = new MenagerService();
 
+            //userList = service.GetAllUsers();
+            roles = roleService.GetAllRoles();
+            sectors = sectorService.GetAllSectors();
+            employeeList = employeeService.GetAllEmployees();
 
         }
 
@@ -62,6 +72,34 @@ namespace DAN_XLIII_Dejan_Prodanovic.ViewModel
                 OnPropertyChanged("MenagerToAdd");
             }
         }
+
+        private tblRole menagerRole;
+        public tblRole MenagerRole
+        {
+            get
+            {
+                return menagerRole;
+            }
+            set
+            {
+                menagerRole = value;
+                OnPropertyChanged("MenagerRole");
+            }
+        }
+
+        private tblSector menagerSector;
+        public tblSector MenagerSector
+        {
+            get
+            {
+                return menagerSector;
+            }
+            set
+            {
+                menagerSector = value;
+                OnPropertyChanged("MenagerSector");
+            }
+        }
         private List<tblEmployee> employeeList;
         public List<tblEmployee> EmployeeList
         {
@@ -76,6 +114,33 @@ namespace DAN_XLIII_Dejan_Prodanovic.ViewModel
             }
         }
 
+        private List<tblRole> roles;
+        public List<tblRole> Roles
+        {
+            get
+            {
+                return roles;
+            }
+            set
+            {
+                roles = value;
+                OnPropertyChanged("Roles");
+            }
+        }
+
+        private List<tblSector> sectors;
+        public List<tblSector> Sectors
+        {
+            get
+            {
+                return sectors;
+            }
+            set
+            {
+                sectors = value;
+                OnPropertyChanged("Sectors");
+            }
+        }
         private Visibility viewAdminPage = Visibility.Collapsed;
         public Visibility ViewAdminPage
         {
@@ -132,11 +197,38 @@ namespace DAN_XLIII_Dejan_Prodanovic.ViewModel
             }
         }
 
+        private Visibility viewMenagerMainPage = Visibility.Collapsed;
+        public Visibility ViewMenagerMainPage
+        {
+            get
+            {
+                return viewMenagerMainPage;
+            }
+            set
+            {
+                viewMenagerMainPage = value;
+                OnPropertyChanged("ViewMenagerMainPage");
+            }
+        }
+
         private DateTime _startDate = DateTime.Now;
         public DateTime StartDate
         {
             get { return _startDate; }
             set { _startDate = value; OnPropertyChanged("StartDate"); }
+        }
+
+        private bool isUpdateUser;
+        public bool IsUpdateUser
+        {
+            get
+            {
+                return isUpdateUser;
+            }
+            set
+            {
+                isUpdateUser = value;
+            }
         }
         #endregion
 
@@ -165,8 +257,21 @@ namespace DAN_XLIII_Dejan_Prodanovic.ViewModel
                 {
                     ViewAddMenagerPage = Visibility.Visible;
                     ViewLoginPage = Visibility.Hidden;
+                    return;
                 }
 
+               
+
+                foreach (var empl in EmployeeList)
+                {
+
+                    if (empl.Username.Equals(employee.Username) && empl.Passwd.Equals(password))
+                    {
+                        ViewMenagerMainPage = Visibility.Visible;
+                        ViewLoginPage = Visibility.Hidden;
+                        return;
+                    }
+                }
                 //string encryptedString = EncryptionHelper.Encrypt(password);
 
 
@@ -241,8 +346,9 @@ namespace DAN_XLIII_Dejan_Prodanovic.ViewModel
             {
                  
                 ViewLoginPage = Visibility.Visible;
-                ViewAddMenagerPage = Visibility.Hidden;
 
+                ViewAddMenagerPage = Visibility.Hidden;
+                ViewMenagerMainPage = Visibility.Hidden;
                 //if (user.Role.Equals("Admin"))
                 //{
                 //    ViewLoginPage = Visibility.Visible;
@@ -269,6 +375,90 @@ namespace DAN_XLIII_Dejan_Prodanovic.ViewModel
             return true;
         }
 
+        private ICommand addMenager;
+
+        public ICommand AddMenager
+        {
+            get
+            {
+                if (addMenager == null)
+                {
+                    addMenager = new RelayCommand(param => AddMenagerExecute(), param => CanAddMenagerExecute());
+                }
+                return addMenager;
+            }
+        }
+
+        private void AddMenagerExecute()
+        {
+            try
+            {
+
+                if (!ValidationClass.JMBGisValid(MenagerToAdd.JMBG))
+                {
+                    MessageBox.Show("JMBG  nije validan.");
+                    return;
+                }
+
+                //if (!ValidationClass.JMBGIsUnique(employee.JMBG))
+                //{
+                //    MessageBox.Show("JMBG  already exists in database");
+                //    return;
+                //}
+
+                
+                if (!ValidationClass.IsValidEmail(MenagerToAdd.Email))
+                {
+                    MessageBox.Show("Email nije validan");
+                    return;
+                }
+
+                MenagerToAdd.RoleID = MenagerRole.RoleID;
+                MenagerToAdd.SectorID = menagerSector.SectorID;
+
+                MenagerToAdd.DateOfBirth = StartDate;
+
+                
+
+                //string textForFile = String.Format("Added user {0} {1} JMBG {2}", employee.FirstName,
+                //              employee.LastName, employee.JMBG);
+                //eventObject.OnActionPerformed(textForFile);
+                //employee.GenderID = gender.GenderID;
+
+                isUpdateUser = true;
+
+
+                menagerService.AddMenager(MenagerToAdd);
+
+                MenagerToAdd = new tblEmployee();
+                MenagerRole = new tblRole();
+                MenagerSector = new tblSector();
+                MessageBox.Show("Uspesno ste dodali menadzera");
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private bool CanAddMenagerExecute()
+        {
+
+            //if (String.IsNullOrEmpty(Employee.FirstName) || String.IsNullOrEmpty(Employee.FirstName) ||
+            //    String.IsNullOrEmpty(Employee.JMBG) || String.IsNullOrEmpty(Employee.RegistrationNumber) ||
+            //    String.IsNullOrEmpty(Employee.TelefonNumber) || String.IsNullOrEmpty(SelctedLocation.Location) ||
+            //    String.IsNullOrEmpty(Sector)
+            //   )
+            //{
+            //    return false;
+            //}
+            //else
+            //{
+            //    return true;
+            //}
+            return true;
+        }
 
         //private ICommand register;
         //public ICommand Register

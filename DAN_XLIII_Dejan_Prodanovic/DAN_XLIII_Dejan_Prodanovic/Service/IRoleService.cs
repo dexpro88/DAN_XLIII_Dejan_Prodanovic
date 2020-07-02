@@ -8,5 +8,6 @@ namespace DAN_XLIII_Dejan_Prodanovic.Service
 {
     interface IRoleService
     {
+        List<tblRole> GetAllRoles();
     }
 }

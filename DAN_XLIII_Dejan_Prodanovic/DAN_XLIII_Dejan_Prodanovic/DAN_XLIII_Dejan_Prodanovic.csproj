@@ -67,6 +67,12 @@
     <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="Service\EmployeeService.cs" />
     <Compile Include="Service\IEmployeeService.cs" />
+    <Compile Include="Service\IMenagerService.cs" />
+    <Compile Include="Service\IRoleService.cs" />
+    <Compile Include="Service\ISectorService.cs" />
+    <Compile Include="Service\MenagerService.cs" />
+    <Compile Include="Service\RoleService.cs" />
+    <Compile Include="Service\SectorService.cs" />
     <Compile Include="tblEmployee.cs">
       <DependentUpon>WorkingHoursDataBaseModel.tt</DependentUpon>
     </Compile>
@@ -80,6 +86,7 @@
       <DependentUpon>WorkingHoursDataBaseModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Utility\EncryptionHelper.cs" />
+    <Compile Include="Validations\ValidationClass.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="vwReport.cs">
@@ -162,5 +169,6 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

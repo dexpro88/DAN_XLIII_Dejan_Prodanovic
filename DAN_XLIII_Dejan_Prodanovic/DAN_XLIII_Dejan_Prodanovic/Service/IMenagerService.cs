@@ -8,5 +8,6 @@ namespace DAN_XLIII_Dejan_Prodanovic.Service
 {
     interface IMenagerService
     {
+        tblEmployee AddMenager(tblEmployee menager);
     }
 }

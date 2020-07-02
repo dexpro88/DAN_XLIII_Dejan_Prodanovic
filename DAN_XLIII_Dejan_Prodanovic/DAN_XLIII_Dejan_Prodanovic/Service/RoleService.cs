@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 namespace DAN_XLIII_Dejan_Prodanovic.Service
 {
-    class SectorService : ISectorService
+    class RoleService : IRoleService
     {
-        public List<tblSector> GetAllSectors()
+        public List<tblRole> GetAllRoles()
         {
             try
             {
                 using (WorkingHoursDBEntities context = new WorkingHoursDBEntities())
                 {
-                    List<tblSector> list = new List<tblSector>();
-                    list = (from x in context.tblSectors select x).ToList();
+                    List<tblRole> list = new List<tblRole>();
+                    list = (from x in context.tblRoles select x).ToList();
                     return list;
                 }
             }

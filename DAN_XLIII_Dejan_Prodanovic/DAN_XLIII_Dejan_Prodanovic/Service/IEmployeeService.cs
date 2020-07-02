@@ -8,5 +8,7 @@ namespace DAN_XLIII_Dejan_Prodanovic.Service
 {
     interface IEmployeeService
     {
+        List<tblEmployee> GetAllEmployees();
+
     }
 }

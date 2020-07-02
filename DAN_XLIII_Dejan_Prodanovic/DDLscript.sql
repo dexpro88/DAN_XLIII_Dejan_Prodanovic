@@ -57,3 +57,23 @@ CREATE TABLE tblReport (
 );
 
 
+GO
+CREATE VIEW vwReport
+AS
+
+SELECT   dbo.tblEmployee.FirstName + ', '+dbo.tblEmployee.LastName  AS FullName,dbo.tblEmployee.EmployeeID,
+         dbo.tblReport.Project, dbo.tblReport.DateOfReport, dbo.tblReport.Position,
+		 dbo.tblReport.NumberOfHours,dbo.tblReport.ReportID
+		
+FROM            dbo.tblEmployee  INNER JOIN
+            dbo.tblReport ON dbo.tblReport.EmployeeID = dbo.tblEmployee.EmployeeID
+GO
+
+SELECT * FROM vwReport;
+SELECT * FROM tblEmployee;
+
+INSERT INTO tblRole VALUES('modify');
+INSERT INTO tblRole VALUES('read-only');
+
+INSERT INTO tblSector VALUES('HR');
+INSERT INTO tblSector VALUES('Financions');

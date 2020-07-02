@@ -46,131 +46,172 @@
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Visibility="{Binding ViewLoginPage, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="3" Orientation = "Horizontal">
-            <Label  Name="lblUsername" Content="Username:" Padding="2" HorizontalAlignment="Right"/>
+        <!--log in page-->
+
+        <StackPanel Visibility="{Binding ViewLoginPage, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="1" Orientation = "Horizontal">
+            <TextBlock Grid.Column="3" Grid.Row="1" Name="textBlock1" TextWrapping="Wrap" FontSize="20"> 
+              <Bold>Aplikacija za evidenciju radnih sati</Bold>
+            </TextBlock>
+        </StackPanel>
+
+        <StackPanel Visibility="{Binding ViewLoginPage, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="5" Orientation = "Horizontal">
+            <Label  Name="lblUsername" Content="Korisnicko ime:" Padding="2" HorizontalAlignment="Right"/>
             <TextBox Name="txtUsername" Height="20" Width="150" 
                  Text="{Binding Employee.Username, UpdateSourceTrigger=PropertyChanged}"/>
         </StackPanel>
 
-        <StackPanel  Visibility="{Binding ViewLoginPage, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="5" Orientation = "Horizontal">
-            <Label Name="lblPassword" Content="Password:" Padding="2" HorizontalAlignment="Right"/>
+        <StackPanel  Visibility="{Binding ViewLoginPage, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="7" Orientation = "Horizontal">
+            <Label Name="lblPassword" Content="                Sifra:" Padding="2" HorizontalAlignment="Right"/>
             <PasswordBox Name="txtPassword" Height="20" Width="150"/>
 
         </StackPanel>
 
+        <StackPanel Visibility="{Binding ViewLoginPage, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="9" 
+                  HorizontalAlignment="Center"   Orientation = "Horizontal">
 
-        <StackPanel Visibility="{Binding ViewLoginPage, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="7" 
-                    Orientation = "Horizontal">
-
-            <Button Name="btnLogin" Content="Login"  Margin = "10" Height="20" Width="70" HorizontalAlignment="Right"
-                Command="{Binding Login, UpdateSourceTrigger=PropertyChanged}"  CommandParameter="{Binding ElementName=txtPassword}"/>
-            <!--<Button Name="btnRegister" Content="Register"  Margin = "10" Height="20" Width="70" HorizontalAlignment="Right"
-                Command="{Binding Register, UpdateSourceTrigger=PropertyChanged}"/>-->
+            <Button Name="btnLogin" Content="Uloguj se"  Margin = "10" Height="20" Width="70" 
+                    Command="{Binding Login, UpdateSourceTrigger=PropertyChanged}"  
+                    CommandParameter="{Binding ElementName=txtPassword}"/>
         </StackPanel>
 
+        <!--end log in page-->
+        
+       
 
-        <!--ADADAD-->
+
+        <!--add menager page-->
 
         <StackPanel Visibility="{Binding ViewAddMenagerPage, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="1" 
                     Orientation = "Horizontal">
-            <Label  Name="lblFirstName" Content="  First name:" Padding="0" HorizontalAlignment="Right"/>
+            <Label  Name="lblFirstName" Content="                   Ime:" Padding="0" HorizontalAlignment="Right"/>
             <TextBox Name="txtFirstName" Height="20" Width="200" Margin="2"
                  Text="{Binding MenagerToAdd.FirstName, UpdateSourceTrigger=PropertyChanged}"/>
         </StackPanel>
 
         <StackPanel Visibility="{Binding ViewAddMenagerPage, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="3"
                     Orientation = "Horizontal">
-            <Label  Name="lblLastName" Content="  Last name:" Padding="0" HorizontalAlignment="Right"/>
+            <Label  Name="lblLastName" Content="               Prezime:" Padding="0" HorizontalAlignment="Right"/>
             <TextBox Name="txtLastName" Height="20" Width="200" Margin="2"
                  Text="{Binding MenagerToAdd.LastName, UpdateSourceTrigger=PropertyChanged}"/>
         </StackPanel>
 
         <StackPanel Visibility="{Binding ViewAddMenagerPage, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="5"
                     Orientation = "Horizontal">
-            <Label  Name="lblJMBG" Content="           JMBG:" Padding="0" HorizontalAlignment="Right"/>
+            <Label  Name="lblJMBG" Content="                 JMBG:" Padding="0" HorizontalAlignment="Right"/>
             <TextBox Name="txtJMBG" Height="20" Width="200" Margin="2"
                  Text="{Binding MenagerToAdd.JMBG, UpdateSourceTrigger=PropertyChanged}"/>
         </StackPanel>
 
         <StackPanel Visibility="{Binding ViewAddMenagerPage, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="7"
                     Orientation = "Horizontal">
-            <Label  Name="lblDateOfBirth" Content=" Date of Birth:" Padding="0" HorizontalAlignment="Right"/>
+            <Label  Name="lblDateOfBirth" Content="    Datum rodjenja:" Padding="0" HorizontalAlignment="Right"/>
            
             <DatePicker   Margin="2" SelectedDate="{Binding StartDate}" />
         </StackPanel>
         
         <StackPanel Visibility="{Binding ViewAddMenagerPage, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="9"
                     Orientation = "Horizontal">
-            <Label  Name="lblAccountNumber" Content="Account Num:" Padding="0" HorizontalAlignment="Right"/>
+            <Label  Name="lblAccountNumber" Content="     Broj racuna:" Padding="0" HorizontalAlignment="Right"/>
             <TextBox Name="txtAccountNumber" Height="20" Width="200" Margin="2"
                  Text="{Binding MenagerToAdd.AccountNumber, UpdateSourceTrigger=PropertyChanged}"/>
         </StackPanel>
         
         <StackPanel Visibility="{Binding ViewAddMenagerPage, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="11"
                     Orientation = "Horizontal">
-            <Label  Name="lblEmail" Content="            Email:" Padding="0" HorizontalAlignment="Right"/>
+            <Label  Name="lblEmail" Content="              Email:" Padding="0" HorizontalAlignment="Right"/>
             <TextBox Name="txtEmail" Height="20" Width="200" Margin="2"
                  Text="{Binding MenagerToAdd.Email, UpdateSourceTrigger=PropertyChanged}"/>
         </StackPanel>
         
         <StackPanel Visibility="{Binding ViewAddMenagerPage, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="13"
                     Orientation = "Horizontal">
-            <Label  Name="lblSalary" Content="            Salary:" Padding="0" HorizontalAlignment="Right"/>
+            <Label  Name="lblSalary" Content="              Plata:" Padding="0" HorizontalAlignment="Right"/>
             <TextBox Name="txtSalary" Height="20" Width="200" Margin="2"
                  Text="{Binding MenagerToAdd.Salary, UpdateSourceTrigger=PropertyChanged}"/>
         </StackPanel>
 
         <StackPanel Visibility="{Binding ViewAddMenagerPage, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="15"
                     Orientation = "Horizontal">
-            <Label  Name="lblPosition" Content="      Position:" Padding="0" HorizontalAlignment="Right"/>
+            <Label  Name="lblPosition" Content="             Pozicija:" Padding="0" HorizontalAlignment="Right"/>
             <TextBox Name="txtPosition" Height="20" Width="200" Margin="2"
                  Text="{Binding MenagerToAdd.Position, UpdateSourceTrigger=PropertyChanged}"/>
         </StackPanel>
 
         <StackPanel Visibility="{Binding ViewAddMenagerPage, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="17"
                     Orientation = "Horizontal">
-            <Label  Name="lbRole" Content="           Role:" Padding="0" HorizontalAlignment="Right"/>
-            <ComboBox  Name="cmbRole" Height="20" Width="200" DisplayMemberPath="Location"
-                 IsEditable="True" ItemsSource="{Binding LocationList, UpdateSourceTrigger=PropertyChanged}"
-                  SelectedItem="{Binding SelctedLocation, UpdateSourceTrigger=PropertyChanged}"/>
+            <Label  Name="lbRole" Content="     Nivo pristupa:" Padding="0" HorizontalAlignment="Right"/>
+            <ComboBox  Name="cmbRole" Height="20" Width="200" DisplayMemberPath="RoleName"
+                 IsEditable="True" ItemsSource="{Binding Roles, UpdateSourceTrigger=PropertyChanged}"
+                  SelectedItem="{Binding MenagerRole, UpdateSourceTrigger=PropertyChanged}"/>
         </StackPanel>
 
         <StackPanel Visibility="{Binding ViewAddMenagerPage, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="19"
                     Orientation = "Horizontal">
-            <Label  Name="lbSector" Content="         Sector:" Padding="2" HorizontalAlignment="Right"/>
-            <ComboBox  Name="cmbSector" Height="20" Width="200" DisplayMemberPath="Location"
-                 IsEditable="True" ItemsSource="{Binding LocationList, UpdateSourceTrigger=PropertyChanged}"
-                  SelectedItem="{Binding SelctedLocation, UpdateSourceTrigger=PropertyChanged}"/>
+            <Label  Name="lbSector" Content="            Sektor:" Padding="2" HorizontalAlignment="Right"/>
+            <ComboBox  Name="cmbSector" Height="20" Width="200" DisplayMemberPath="SectorName"
+                 IsEditable="True" ItemsSource="{Binding Sectors, UpdateSourceTrigger=PropertyChanged}"
+                  SelectedItem="{Binding MenagerSector, UpdateSourceTrigger=PropertyChanged}"/>
         </StackPanel>
 
         <StackPanel Visibility="{Binding ViewAddMenagerPage, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="21"
                     Orientation = "Horizontal">
-            <Label  Name="lblMenagerUsername" Content="  Username:" Padding="2" HorizontalAlignment="Right"/>
+            <Label  Name="lblMenagerUsername" Content="Korisnicko ime:" Padding="2" HorizontalAlignment="Right"/>
             <TextBox Name="txtMenagerUsername" Height="20" Width="200" Margin="2"
                  Text="{Binding MenagerToAdd.Username, UpdateSourceTrigger=PropertyChanged}"/>
         </StackPanel>
 
         <StackPanel Visibility="{Binding ViewAddMenagerPage, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="23"
                     Orientation = "Horizontal">
-            <Label  Name="lblMenagerPass" Content="   Password:" Padding="0" HorizontalAlignment="Right"/>
+            <Label  Name="lblMenagerPass" Content="               Sifra:" Padding="0" HorizontalAlignment="Right"/>
             <TextBox Name="txtMenagerPass" Height="20" Width="200" Margin="2"
-                 Text="{Binding MenagerToAdd.Username, UpdateSourceTrigger=PropertyChanged}"/>
+                 Text="{Binding MenagerToAdd.Passwd, UpdateSourceTrigger=PropertyChanged}"/>
         </StackPanel>
-
-    
 
 
         <StackPanel Visibility="{Binding ViewAddMenagerPage, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="25"
                     Orientation = "Horizontal">
-            <Button   Name="btnAddMenager" Content="AddMenager" Height="20" Width="100" HorizontalAlignment="Left"
-                Command="{Binding Save, UpdateSourceTrigger=PropertyChanged}" Margin="10"/>
-            <Button   Name="btnLogout" Content="Logout" Height="20" Width="100" HorizontalAlignment="Right"
+            <Button   Name="btnAddMenager" Content="Dodaj menadzera" Height="20" Width="100" HorizontalAlignment="Left"
+                Command="{Binding AddMenager, UpdateSourceTrigger=PropertyChanged}" Margin="10"/>
+            <Button   Name="btnLogout" Content="Odjavi se" Height="20" Width="100" HorizontalAlignment="Right"
                 Command="{Binding Logout, UpdateSourceTrigger=PropertyChanged}"/>
 
         </StackPanel>
 
+        <!--<StackPanel Visibility="{Binding ViewAddMenagerPage, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="27"
+                    Orientation = "Horizontal">
 
-        <!--AAAAAADADF-->
+            <TextBlock Name="textBlock1" TextWrapping="Wrap">
+              <Bold>TextBlock</Bold> is designed to be <Italic>lightweight</Italic>,
+              and is geared specifically at integrating <Italic>small</Italic> portions
+               of flow content into a UI.
+            </TextBlock>
+        </StackPanel>-->
+        
+        <!--end of add menager page-->
+        
+        
+        <!--menager main page-->
+        <StackPanel Visibility="{Binding ViewMenagerMainPage, UpdateSourceTrigger=PropertyChanged}" Grid.Column="3" Grid.Row="1"
+                    Orientation = "Horizontal" HorizontalAlignment="Center">
+
+            <TextBlock Grid.Column="3" Grid.Row="1" Name="textBlock" TextWrapping="Wrap" FontSize="20"> 
+              <Bold>Ulogovani ste kao ADMIN!</Bold>
+            </TextBlock>
+
+        </StackPanel>
+       
+        <StackPanel Visibility="{Binding ViewMenagerMainPage, UpdateSourceTrigger=PropertyChanged}" Grid.Column="3" Grid.Row="3"
+                    Orientation = "Horizontal">
+           
+            <Button   Name="btnShowEmoloyees" Content="Prikazi zaposlene" Height="20" Width="100" HorizontalAlignment="Left"
+                Command="{Binding AddMenager, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+            <Button   Name="btnShowReports" Content="Prikazi izvestaje" Height="20" Width="100" HorizontalAlignment="Right"
+                Command="{Binding Logout, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+            <Button   Name="btnLogout2" Content="Odjavi se" Height="20" Width="100" HorizontalAlignment="Right"
+                Command="{Binding Logout, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+
+        </StackPanel>
+        <!--end of  menager main page-->
 
         <StackPanel Visibility="{Binding ViewUserPage, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="1" 
                     Orientation = "Horizontal">
