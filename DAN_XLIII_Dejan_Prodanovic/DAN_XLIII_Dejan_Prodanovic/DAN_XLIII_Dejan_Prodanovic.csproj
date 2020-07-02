@@ -64,10 +64,36 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\RelayCommand.cs" />
+    <Compile Include="Service\EmployeeService.cs" />
+    <Compile Include="Service\IEmployeeService.cs" />
+    <Compile Include="tblEmployee.cs">
+      <DependentUpon>WorkingHoursDataBaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblReport.cs">
+      <DependentUpon>WorkingHoursDataBaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblRole.cs">
+      <DependentUpon>WorkingHoursDataBaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblSector.cs">
+      <DependentUpon>WorkingHoursDataBaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Utility\EncryptionHelper.cs" />
+    <Compile Include="ViewModel\MainWindowViewModel.cs" />
+    <Compile Include="ViewModel\ViewModelBase.cs" />
+    <Compile Include="vwReport.cs">
+      <DependentUpon>WorkingHoursDataBaseModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="WorkingHoursDataBaseModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>WorkingHoursDataBaseModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WorkingHoursDataBaseModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WorkingHoursDataBaseModel.tt</DependentUpon>
     </Compile>
     <Compile Include="WorkingHoursDataBaseModel.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -125,6 +151,12 @@
     <Content Include="WorkingHoursDataBaseModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>WorkingHoursDataBaseModel.Context.cs</LastGenOutput>
+      <DependentUpon>WorkingHoursDataBaseModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="WorkingHoursDataBaseModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>WorkingHoursDataBaseModel.edmx</DependentUpon>
+      <LastGenOutput>WorkingHoursDataBaseModel.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup>
