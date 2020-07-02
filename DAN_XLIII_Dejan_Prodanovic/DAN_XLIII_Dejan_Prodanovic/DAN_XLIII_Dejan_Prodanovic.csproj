@@ -91,6 +91,7 @@
     <Compile Include="Validations\ValidationClass.cs" />
     <Compile Include="ViewModel\AddEmployeeViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
+    <Compile Include="ViewModel\ShowEmployeesReadOnlyViewModel.cs" />
     <Compile Include="ViewModel\ShowEmployeesViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="View\AddEmployee.xaml.cs">
@@ -98,6 +99,9 @@
     </Compile>
     <Compile Include="View\ShowEmployees.xaml.cs">
       <DependentUpon>ShowEmployees.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ShowEmployeesReadOnly.xaml.cs">
+      <DependentUpon>ShowEmployeesReadOnly.xaml</DependentUpon>
     </Compile>
     <Compile Include="vwReport.cs">
       <DependentUpon>WorkingHoursDataBaseModel.tt</DependentUpon>
@@ -134,6 +138,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ShowEmployees.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ShowEmployeesReadOnly.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

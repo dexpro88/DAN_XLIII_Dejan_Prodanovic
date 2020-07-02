@@ -16,20 +16,20 @@ using System.Windows.Shapes;
 namespace DAN_XLIII_Dejan_Prodanovic.View
 {
     /// <summary>
-    /// Interaction logic for ShowEmployees.xaml
+    /// Interaction logic for ShowEmployeesReadOnly.xaml
     /// </summary>
-    public partial class ShowEmployees : Window
+    public partial class ShowEmployeesReadOnly : Window
     {
-        public ShowEmployees()
+        public ShowEmployeesReadOnly()
         {
             InitializeComponent();
-            this.DataContext = new ShowEmployeesViewModel(this);
+            this.DataContext = new ShowEmployeesReadOnlyViewModel(this);
         }
 
-        public ShowEmployees(tblEmployee currentUser)
+        public ShowEmployeesReadOnly(tblEmployee currentUser)
         {
             InitializeComponent();
-            this.DataContext = new ShowEmployeesViewModel(this, currentUser);
+            this.DataContext = new ShowEmployeesReadOnlyViewModel(this, currentUser);
         }
     }
 }

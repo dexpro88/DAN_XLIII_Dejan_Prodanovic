@@ -16,13 +16,22 @@ namespace DAN_XLIII_Dejan_Prodanovic.ViewModel
         ShowEmployees showEmployees;
         IEmployeeService employeeService;
 
-        #region Constructor
+        #region Constructors
+
         public ShowEmployeesViewModel(ShowEmployees showEmployeesOpen)
+        {
+            showEmployees = showEmployeesOpen;
+            employeeService = new EmployeeService();
+
+            EmployeeList = employeeService.GetAllNonMenagerEmployees();
+        }
+
+        public ShowEmployeesViewModel(ShowEmployees showEmployeesOpen, tblEmployee currentUser)
         {                   
             showEmployees = showEmployeesOpen;
             employeeService = new EmployeeService();
 
-            employeeService.GetAllNonMenagerEmployees();
+            EmployeeList = employeeService.GetAllNonMenagerEmployees();
         }
 
 

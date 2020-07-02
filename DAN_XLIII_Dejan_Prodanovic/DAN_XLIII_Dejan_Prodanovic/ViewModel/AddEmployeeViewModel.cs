@@ -145,8 +145,6 @@ namespace DAN_XLIII_Dejan_Prodanovic.ViewModel
 
                 employeeService.AddEmployee(employee);
 
-
-
                 employee = new tblEmployee();
               
                 Salary = "";

@@ -60,6 +60,9 @@ namespace DAN_XLIII_Dejan_Prodanovic.ViewModel
             }
         }
 
+        private tblEmployee currentUser;
+ 
+
         private tblEmployee menagerToAdd;
         public tblEmployee MenagerToAdd
         {
@@ -288,11 +291,14 @@ namespace DAN_XLIII_Dejan_Prodanovic.ViewModel
                         {
                             ViewMenagerMainPage = Visibility.Visible;
                             ViewLoginPage = Visibility.Hidden;
+                            currentUser = employeeService.GetEmployeeByUsername(employee.Username);
                             return;
                         }
                        
                     }
                 }
+
+                MessageBox.Show("Pogresna sifra ili korisnicko ime");
                 //string encryptedString = EncryptionHelper.Encrypt(password);
 
 
@@ -506,10 +512,20 @@ namespace DAN_XLIII_Dejan_Prodanovic.ViewModel
         {
             try
             {
-                ShowEmployees showEmployees = new ShowEmployees();
-                showEmployees.ShowDialog();
-
                  
+                tblRole currentUserRole = roleService.GetRoleByID((int)currentUser.RoleID);
+
+                if (currentUserRole.RoleName.Equals("modify"))
+                {
+                    ShowEmployees showEmployees = new ShowEmployees(employee);
+                    showEmployees.ShowDialog();
+                }
+                else if (currentUserRole.RoleName.Equals("read-only"))
+                {
+                    ShowEmployeesReadOnly showEmployeesReadOnly = new ShowEmployeesReadOnly();
+                    showEmployeesReadOnly.ShowDialog();
+                }
+                      
             }
             catch (Exception ex)
             {

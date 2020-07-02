@@ -81,6 +81,29 @@ namespace DAN_XLIII_Dejan_Prodanovic.Service
                 System.Diagnostics.Debug.WriteLine("Exception" + ex.Message.ToString());
                 return null;
             }
+
+        }
+
+        public tblEmployee GetEmployeeByUsername(string username)
+        {
+            try
+            {
+                using (WorkingHoursDBEntities context = new WorkingHoursDBEntities())
+                {
+                    tblEmployee currentUser = (from e in context.tblEmployees where e.Username == username select e).First();
+
+
+                    return currentUser;
+
+                    //FileLoging fileLog = FileLoging.Instance();
+                    //fileLog.LogDeleteUserToFile(userToDelete);
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Exception" + ex.Message.ToString());
+                return null;
+            }
         }
     }
 }
